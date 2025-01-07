@@ -9,7 +9,8 @@ const PORT = process.env.PORT || 3000;
  * @property {string} path - Path of the request
  * @property {string} version - HTTP version of the request
  * @property {any} headers - Headers received on client request
- * @property {string} body - Body parsed from the client request
+ * @property {any} body - Body parsed from the client request
+ * @property {any} query - Query parameters parsed from the client request
  */
 /**
  *
@@ -30,7 +31,18 @@ function parseClientRequest(data) {
     }
     console.timeEnd('parseClientRequest')
 
-    let parsedBody = body;
+
+    const query = {};
+    const queryParamsString = path.split('?')[1];
+    if (queryParamsString) {
+        const queryParamsArray = queryParamsString.split('&');
+        for (let i = 0; i < queryParamsArray.length; i++) {
+            const [key, value] = queryParamsArray[i].split('=');
+            query[key] = value;
+        }
+    }
+
+    let parsedBody = {};
     if (method === 'POST' || method === 'PUT') {
         if (headers['Content-Type'] === 'application/json') {
             parsedBody = JSON.parse(body);
@@ -38,7 +50,7 @@ function parseClientRequest(data) {
     }
 
     return {
-        method, path, body: parsedBody, headers, version,
+        method, path, body: parsedBody, headers, version, query,
     }
 }
 
