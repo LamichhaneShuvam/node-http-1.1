@@ -1,14 +1,13 @@
 const net = require('node:net');
 const PORT = process.env.PORT || 3000;
 
-
 /**
  * Return structure for parseClientRequest
  * @typedef {Object} ParsedReqeust
  * @property {string} method - Method of the request
  * @property {string} path - Path of the request
  * @property {string} version - HTTP version of the request
- * @property {any} headers - Headers received on client request
+ * @property {[key: string]} headers - Headers received on client request
  * @property {any} body - Body parsed from the client request
  * @property {any} query - Query parameters parsed from the client request
  */
