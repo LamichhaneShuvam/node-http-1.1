@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 3000;
  * @property {string} method - Method of the request
  * @property {string} path - Path of the request
  * @property {string} version - HTTP version of the request
- * @property {[key: string]} headers - Headers received on client request
+ * @property {Record<string, string>} headers - Headers received on client request
  * @property {any} body - Body parsed from the client request
  * @property {any} query - Query parameters parsed from the client request
  */
