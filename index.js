@@ -85,6 +85,8 @@ function createResponse(statusCode, contentType, responseBody) {
       response += JSON.stringify(responseBody);
     } else if (contentType === "text/html") {
       response += responseBody;
+    } else {
+        throw Error("Invalid content type or this hasn't been implemented yet.", contentType);
     }
   }
   return response;
