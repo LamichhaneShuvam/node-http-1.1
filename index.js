@@ -84,7 +84,7 @@ function createResponse(statusCode, contentType, responseBody) {
     if (contentType === "application/json") {
       response += JSON.stringify(responseBody);
     } else if (contentType === "text/html") {
-      response += response;
+      response += responseBody;
     }
   }
   return response;
@@ -97,6 +97,12 @@ const server = net.createServer((socket) => {
     let response;
     if (parsedRequest.path === "/" && parsedRequest.method === "GET") {
       response = createResponse(200, "application/json", { hello: "world" });
+    } else {
+      response = createResponse(
+        404,
+        "text/html",
+        `Not Found: ${parsedRequest.path} For Method: ${parsedRequest.method}`
+      );
     }
     socket.write(response);
     socket.end();
