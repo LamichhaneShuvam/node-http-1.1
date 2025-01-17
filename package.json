@@ -6,8 +6,8 @@
   "author": "Shuvam Lamichhane",
   "license": "MIT",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js"
+    "start": "node ./src/index.js",
+    "dev": "nodemon ./src/index.js"
   },
   "devDependencies": {
     "@types/node": "^22.10.5",
